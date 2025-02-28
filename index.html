@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Basol | Embedded Developer</title>
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --accent: #7b68ee;
+            --accent-light: #9d8df1;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b3b3b3;
+            --border: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent-light);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            padding: 1.5rem 0;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 0;
+            min-height: 80vh;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            max-width: 800px;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-primary);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            color: var(--text-secondary);
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .skill-card h3 {
+            margin: 1rem 0;
+        }
+        
+        .skill-card p {
+            color: var(--text-secondary);
+        }
+        
+        .experience-item {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .experience-date {
+            color: var(--text-secondary);
+        }
+        
+        .experience-company {
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .contact-card h3 {
+            margin: 1rem 0;
+        }
+        
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Burak<span>Basol</span></a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Burak Basol</h1>
+            <h2>Embedded Developer | Computer Engineering Student</h2>
+            <p>
+                Passionate about artificial intelligence, embedded systems, and cybersecurity.
+                I enjoy working on the intersection of hardware and software, focusing on
+                machine learning, deep learning, reinforcement learning, and real-time embedded applications.
+            </p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+                <a href="#projects" class="btn btn-outline">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <p>
+                I am a student at Yıldız Technical University, passionate about artificial intelligence, embedded systems, and cybersecurity. 
+                I enjoy working on the intersection of hardware and software, focusing on machine learning, deep learning, reinforcement learning, 
+                and real-time embedded applications.
+            </p>
+            <p>
+                I have experience with STM32, FPGA/ASIC design, microcontrollers, and sensor integration. 
+                I'm also interested in AI optimization, cybersecurity, and developing efficient embedded solutions.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills">
+                <div class="skill-card">
+                    <h3>x86 Assembly</h3>
+                    <p>Low-level programming for systems optimization</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Verilog</h3>
+                    <p>Hardware description language for digital circuit design</p>
+                </div>
+                <div class="skill-card">
+                    <h3>FPGA</h3>
+                    <p>Field-Programmable Gate Arrays implementation and design</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Embedded Systems</h3>
+                    <p>STM32, microcontrollers, and sensor integration</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Artificial Intelligence</h3>
+                    <p>Machine learning, deep learning, and reinforcement learning</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Cybersecurity</h3>
+                    <p>System security and vulnerability assessment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Experience</h2>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Skysis Technical Team Member</div>
+                    <div class="experience-date">November 2024 - Present</div>
+                </div>
+                <div class="experience-company">SKY LAB : Yıldız Teknik Üniversitesi Bilgisayar Bilimleri Kulübü</div>
+                <p>
+                    The Skysis team focuses on developing innovative projects in embedded systems and IoT 
+                    while conducting comprehensive research and development activities in these fields. 
+                    Their goals include delivering valuable solutions to the industry and pushing the 
+                    boundaries of modern technology.
+                </p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">YILDIZ JAM Organization Member</div>
+                    <div class="experience-date">December 2024 - February 2025</div>
+                </div>
+                <div class="experience-company">SKY LAB : Yıldız Teknik Üniversitesi Bilgisayar Bilimleri Kulübü</div>
+                <p>
+                    Contributed to organizing YILDIZ JAM, a student-led event focused on technology and innovation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Bachelor's degree, Computer Engineering</div>
+                    <div class="experience-date">August 2024 - June 2028</div>
+                </div>
+                <div class="experience-company">Yıldız Technical University</div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Science High School</div>
+                    <div class="experience-date">September 2019 - June 2023</div>
+                </div>
+                <div class="experience-company">Eskişehir Fatih Science High School</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2>Certifications</h2>
+            </div>
+            <div class="experience-item">
+                <div class="experience-title">Akbank Deep Learning Bootcamp</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <a href="mailto:burakbasol001@gmail.com">burakbasol001@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Phone</h3>
+                    <p>+905060267098</p>
+                </div>
+                <div class="contact-card">
+                    <h3>Location</h3>
+                    <p>Çifte Havuzlar, YTÜ-Davutpaşa Kampüsü, 34220 Esenler/İstanbul</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/burakbasol" target="_blank">LinkedIn</a>
+                <a href="https://www.kaggle.com/xedygen" target="_blank">Kaggle</a>
+                <a href="https://leetcode.com/u/xedygen/" target="_blank">LeetCode</a>
+                <a href="https://github.com/xedygen" target="_blank">GitHub</a>
+            </div>
+            <p>&copy; 2025 Burak Basol. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
